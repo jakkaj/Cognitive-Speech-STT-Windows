@@ -746,7 +746,11 @@ namespace MicrosoftProjectOxfordExample
             Trace.WriteLine(formattedStr);
             Dispatcher.Invoke(() =>
             {
-                _logText.Text += (formattedStr + "\n");
+                if (string.IsNullOrWhiteSpace(formattedStr))
+                {
+                    return;
+                }
+                _logText.Text = (formattedStr + "\n");
                 _logText.ScrollToEnd();
             });
         }
